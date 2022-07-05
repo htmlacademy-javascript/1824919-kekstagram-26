@@ -4,7 +4,6 @@ const amountOfNumbers = 25;
 for (let i = 1; i <= amountOfNumbers; i++) {
   idObject.push(i);
 }
-
 //В массив записываются числа, которые будем вешать на идентификаторы
 
 const url = [];
@@ -12,6 +11,8 @@ const url = [];
 for (let i = 1; i <= amountOfNumbers; i++) {
   url.push(i);
 }
+
+const commentsId = [];
 
 const description = ['Закат', 'восход', 'пальмы', 'пляж'];
 const message = [
@@ -27,29 +28,50 @@ const Name = [
   'Ivan', 'Marina', 'Vladimir',
 ];
 
+
 const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-
 // делает комментарий как объект с разными айди, аватаркой, сообщением и именем
 
 const makeComment = function() {
-  return {
-    id: getRandomPositiveInteger(0, 1000000000),
-    avatar: 'img/avatar-' + getRandomPositiveInteger(1, 6) + '.svg',
-    message: message[getRandomPositiveInteger(0, message.length - 1)],
-    Name: Name[getRandomPositiveInteger(0, Name.length - 1)],
-  };
+  const comments = [];
+  for (let i = 0; i < 10; i++) {
+    comments.push({
+      id: createUniqueId(commentsId),
+      avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
+      message: message[getRandomPositiveInteger(0, message.length - 1)],
+      Name: Name[getRandomPositiveInteger(0, Name.length - 1)],
+    });
+  }
+  return comments;
 };
 
+function createUniqueNumberFromArray(numbers) {
+  const indexNumber = getRandomPositiveInteger(0, numbers.length - 1);
+  const result = numbers[indexNumber];
+  numbers = numbers.splice(indexNumber, 1);
+  return result;
+}
+
+function createUniqueId(numbers) {
+  let result = null;
+  while(!numbers.includes(result)) {
+    result = getRandomPositiveInteger(1, 1000);
+    numbers.push(result);
+  }
+
+  return result;
+}
+
 // функция делает объект?
-const createObject = () => {
+const createObject = function() {
   return {
-    idObject: idObject[getRandomPositiveInteger(0, amountOfNumbers)],
-    url: 'photos/' + url[getRandomPositiveInteger(0, amountOfNumbers)] + '.jpg',
+    idObject: createUniqueNumberFromArray(idObject),
+    url: `photos/${createUniqueNumberFromArray(url)}.jpg`,
     description: description[getRandomPositiveInteger(0, description.length - 1)],
     likes: getRandomPositiveInteger(15, 200),
     comment: makeComment(),  //здесь вызываем функцию мейккоммент
@@ -58,12 +80,5 @@ const createObject = () => {
 
 const allObjects = Array.from({length: 25}, createObject);
 
+allObjects();
 // создаем массив из разных объектов, внутри которых будет объект коммент
-
-// Функция для проверки максимальной длины строки
-
-const checkLength = (inputText, maxLength) => inputText.length <= maxLength;
-checkLength ('Проверка длины строки', 100);
-
-//http://kodesource.top/javascript/form/string-length.php - ссылка на функцию для проверки длины строки
-
