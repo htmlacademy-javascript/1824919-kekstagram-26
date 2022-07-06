@@ -82,3 +82,8 @@ const allObjects = Array.from({length: 25}, createObject);
 
 allObjects();
 // создаем массив из разных объектов, внутри которых будет объект коммент
+
+const checkLength = (inputText, maxLength) => inputText.length <= maxLength;
+checkLength ('Проверка длины строки', 100);
+
+//http://kodesource.top/javascript/form/string-length.php - ссылка на функцию для проверки длины строки
