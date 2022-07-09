@@ -63,7 +63,7 @@ const createObject = function() {
 
 const allObjects = Array.from({length: 25}, createObject);
 
-allObjects();
+allObjects;
 
 export {allObjects};
 // создаем массив из разных объектов, внутри которых будет объект коммент
