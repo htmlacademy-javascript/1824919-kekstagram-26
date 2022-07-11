@@ -12,7 +12,10 @@ allObjects.forEach((object) => {
   newPicture.querySelector('.picture__img').src = object.url;
   newPicture.querySelector('.picture__likes').textContent = object.likes;
   newPicture.querySelector('.picture__comments').textContent = object.comment.length;
+  // console.log(object.comment);
   objectFragment.appendChild(newPicture);
 });
 
 pictures.appendChild(objectFragment);
+
+export {pictures};
