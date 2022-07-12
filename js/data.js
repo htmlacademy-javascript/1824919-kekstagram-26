@@ -38,7 +38,7 @@ const Name = [
 
 const makeComment = function() {
   const comments = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < getRandomPositiveInteger(5, 8); i++) {
     comments.push({
       id: createUniqueId(commentsId),
       avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
