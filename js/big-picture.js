@@ -87,4 +87,4 @@ bigPictureClose.addEventListener('click',() => {
   closePicture();
 });
 
-
+export {isEscapeKey};

@@ -696,6 +696,27 @@ main {
   border-radius: 5px;
 }
 
+.img-upload__field-wrapper {
+  position: relative;
+}
+
+.text__item--invalid + .text__item {
+  outline:#ff2f2f solid 3px;
+}
+
+.text__error {
+  color: #ff2f2f;
+  font-size: 14px;
+  line-height: 14px;;
+  position: absolute;
+  left: -80px;
+  top: 0px;
+  display: block;
+  width: 130px;
+}
+
+/* text__item */
+
 .text__description {
   width: 450px;
   height: 100px;
@@ -1208,7 +1229,7 @@ main {
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 3;
 
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -1297,7 +1318,6 @@ main {
 .success__button:active {
   opacity: 0.6;
 }
-
 
 /**
  * Экран загрузки изображения
