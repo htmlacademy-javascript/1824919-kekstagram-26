@@ -129,7 +129,7 @@ const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 const checkHashtags = function (value) {
   if (value === '') {
-    return true
+    return true;
   }
   const array = value.split(' ');
   const newArray = [];
