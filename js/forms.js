@@ -124,10 +124,12 @@ const pristine = new Pristine(form, {
   errorTextClass: 'text__error'
 });
 
-
 const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 const checkHashtags = function (value) {
+  if (value === '') {
+    return true;
+  }
   const array = value.split(' ');
   const newArray = [];
   if (array.length > 5) {
