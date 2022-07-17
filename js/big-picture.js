@@ -58,11 +58,19 @@ const openBigPicture = function (picture, commentsOfPicture, description) {
       allComments.appendChild(cardItem);
     }
 
+    if (commentsArray.length < 5 || pictureComments.textContent <= 5) {
+      commentsLoader.classList.add('hidden');
+    } else {commentsLoader.classList.remove('hidden');}
+
     commentsLoader.addEventListener('click', () => {
 
       commentsArray = commentsOfPicture.splice(0, 5);
       commentsLength += commentsArray.length;
       commentsBlocks.querySelector('.comments-quantity').textContent = commentsLength;
+
+      if (commentsArray.length < 5) {
+        commentsLoader.classList.add('hidden');
+      } else {commentsLoader.classList.remove('hidden');}
 
       for (let i = 0; i < commentsArray.length; i++) {
         const cardItem = pushComment(commentsArray[i]);
@@ -87,7 +95,6 @@ const onPictureEscKeydown = (evt) => {
 };
 
 function openPicture () {
-  // commentsLoader.classList.add('hidden');
   // commentsBlocks.classList.add('hidden');
   big.classList.remove('hidden');
   document.body.classList.add('modal-open');
