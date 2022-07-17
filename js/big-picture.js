@@ -35,7 +35,7 @@ const pushComment = function (comment) {
   return commentsItem;
 };
 
-const openBigPicture = function (picture, comments, description) {
+const openBigPicture = function (picture, commentsOfPicture, description) {
   const picturePhoto = picture.querySelector('img');
   const pictureLikes = picture.querySelector('.picture__likes');
   const pictureComments = picture.querySelector('.picture__comments');
@@ -47,11 +47,30 @@ const openBigPicture = function (picture, comments, description) {
     bigComments.textContent = pictureComments.textContent;
     descriptionPlace.textContent = description;
 
-    for (let i = 0; i < comments.length; i++) {
-      const cardItem = pushComment(comments[i]);
+    let commentsLength = 0;
+
+    let commentsArray = commentsOfPicture.splice(0, 5);
+    commentsLength += commentsArray.length;
+    commentsBlocks.querySelector('.comments-quantity').textContent = commentsLength;
+
+    for (let i = 0; i < commentsArray.length; i++) {
+      const cardItem = pushComment(commentsArray[i]);
       allComments.appendChild(cardItem);
     }
 
+    commentsLoader.addEventListener('click', () => {
+
+      commentsArray = commentsOfPicture.splice(0, 5);
+      commentsLength += commentsArray.length;
+      commentsBlocks.querySelector('.comments-quantity').textContent = commentsLength;
+
+      for (let i = 0; i < commentsArray.length; i++) {
+        const cardItem = pushComment(commentsArray[i]);
+        allComments.appendChild(cardItem);
+      }
+    });
+
+    // console.log(comments)
     openPicture();
   });
 };
@@ -68,8 +87,8 @@ const onPictureEscKeydown = (evt) => {
 };
 
 function openPicture () {
-  commentsLoader.classList.add('hidden');
-  commentsBlocks.classList.add('hidden');
+  // commentsLoader.classList.add('hidden');
+  // commentsBlocks.classList.add('hidden');
   big.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onPictureEscKeydown);

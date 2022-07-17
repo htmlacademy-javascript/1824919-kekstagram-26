@@ -99,7 +99,6 @@ document.querySelector('.effects__list').addEventListener('change', (evt) => {
     image.classList.remove(`effects__preview--${newEffect}`);
   } else {sliderElement.classList.remove('hidden');}
 
-
   image.classList.remove(`effects__preview--${newEffect}`);
   image.classList.add(`effects__preview--${evt.target.value}`);
   newEffect = evt.target.value;
