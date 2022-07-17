@@ -3,3 +3,4 @@ import './util.js';
 import './pictures.js';
 import './big-picture.js';
 import './forms.js';
+import './effects.js';
