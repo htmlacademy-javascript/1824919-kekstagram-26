@@ -1,5 +1,3 @@
-import {allObjects} from './data.js';
-
 const isEscapeKey = function (evt) {
   return evt.key === 'Escape';
 };
@@ -10,7 +8,6 @@ const likes = document.querySelector('.likes-count');
 const bigComments = document.querySelector('.comments-count');
 const allComments = document.querySelector('.social__comments');
 const commentsLoader = document.querySelector('.comments-loader');
-const pictures = document.querySelectorAll('.picture');
 
 const makeElement = function (tagName, className, text) {
   const element = document.createElement(tagName);
@@ -49,7 +46,7 @@ const openBigPicture = function (picture, commentsOfPicture, description) {
 
     let commentsLength = 0;
 
-    let commentsArray = commentsOfPicture.splice(0, 5);
+    let commentsArray = commentsOfPicture.slice(0, 5);
     commentsLength += commentsArray.length;
     commentsBlocks.querySelector('.comments-quantity').textContent = commentsLength;
 
@@ -61,13 +58,14 @@ const openBigPicture = function (picture, commentsOfPicture, description) {
     if (commentsArray.length < 5 || pictureComments.textContent <= 5) {
       commentsLoader.classList.add('hidden');
     } else {commentsLoader.classList.remove('hidden');}
-
+    let firstNumber = 5;
+    let secondNumber = 10;
     commentsLoader.addEventListener('click', () => {
-
-      commentsArray = commentsOfPicture.splice(0, 5);
+      commentsArray = commentsOfPicture.slice(firstNumber, secondNumber);
       commentsLength += commentsArray.length;
       commentsBlocks.querySelector('.comments-quantity').textContent = commentsLength;
-
+      firstNumber += 5;
+      secondNumber += 5;
       if (commentsArray.length < 5) {
         commentsLoader.classList.add('hidden');
       } else {commentsLoader.classList.remove('hidden');}
@@ -83,9 +81,6 @@ const openBigPicture = function (picture, commentsOfPicture, description) {
   });
 };
 
-for (let i = 0; i < pictures.length; i++) {
-  openBigPicture(pictures[i], allObjects[i].comment, allObjects[i].description);
-}
 
 const onPictureEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -113,4 +108,4 @@ bigPictureClose.addEventListener('click',() => {
   closePicture();
 });
 
-export {isEscapeKey};
+export {isEscapeKey, openBigPicture};
