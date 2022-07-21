@@ -5,13 +5,16 @@ const description = document.querySelector('.text__description');
 const hashtag = document.querySelector('.text__hashtags');
 const form = document.querySelector('#upload-select-image');
 const objectFragment = document.createDocumentFragment();
-
+const submitButton = document.querySelector('.img-upload__submit');
+const scaleValue = document.querySelector('.scale__control--value');
+import {newEffect} from './effects.js';
 const closeOverlay = function () {
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('.modal-open');
   hashtag.value = '';
   uploadInput.value = '';
   description.value = '';
+  scaleValue.value = '100%';
 };
 
 const onOverlayEscKeydown = (evt) => {
@@ -25,6 +28,15 @@ const openOverlay = function () {
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('.modal-open');
   document.addEventListener('keydown', onOverlayEscKeydown);
+  description.value = '';
+  scaleValue.value = '100%';
+  uploadOverlay.querySelector('img').style = '';
+  document.querySelector('.effect-level__slider').noUiSlider.set(1);
+  document.querySelector('#effect-none').checked = true;
+  document.querySelector('.img-upload__preview').style.transform = 'scale(1)';
+  document.querySelector('.img-upload__preview').style.filter = '';
+  document.querySelector('.effect-level__slider').classList.add('hidden');
+  document.querySelector('.img-upload__preview').classList.remove(`effects__preview--${newEffect}`);
 };
 
 uploadInput.addEventListener('change', openOverlay);
@@ -169,12 +181,43 @@ pristine.addValidator(
   'Максимальная длина 140 символов'
 );
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  const isValid = pristine.validate();
-  if (isValid) {
-    showSuccess();
-  } else {
-    showError();
-  }
-});
+const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      const formData = new FormData(form);
+      // for(let [name, value] of formData) {
+      //   alert(`${name} = ${value}`); // key1=value1, потом key2=value2
+      // }
+      submitButton.disabled = true;
+      fetch(
+        'https://26.javascript.pages.academy/kekstagram',
+        {
+          method: 'POST',
+          body: formData,
+        },
+      )
+        .then((response) => {
+          if (response.ok) {
+            onSuccess();
+            submitButton.disabled = false;
+            closeOverlay();
+            document.removeEventListener('keydown', onOverlayEscKeydown);
+          } else {
+            showError();
+            submitButton.disabled = false;
+          }
+        })
+        .catch(() => {
+          showError();
+          submitButton.disabled = false;
+        });
+    }
+  });
+};
+
+setUserFormSubmit(showSuccess);
+
+export {form};

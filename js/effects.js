@@ -9,7 +9,7 @@ scaleSmaller.addEventListener('click', () => {
   if (percent >= 30) {
     scaleValue.value = `${percent - 25}%`;
     const resultNumber = parseFloat(scaleValue.value) / '100';
-    image.setAttribute('style', `transform: scale(${resultNumber})`);
+    image.style.transform = `scale(${resultNumber})`;
   }
 });
 
@@ -18,7 +18,7 @@ scaleBigger.addEventListener('click', () => {
   if (percent <= 75) {
     scaleValue.value = `${percent + 25}%`;
     const resultNumber = parseFloat(scaleValue.value) / '100';
-    image.setAttribute('style', `transform: scale(${resultNumber})`);
+    image.style.transform = `scale(${resultNumber})`;
   }
 });
 
@@ -115,12 +115,13 @@ document.querySelector('.effects__list').addEventListener('change', (evt) => {
 
   sliderElement.noUiSlider.set(effectsMax[newEffect]);
   valueElement.value = sliderElement.noUiSlider.get();
-
-  image.setAttribute('style', `filter: ${effectsStyle[newEffect]}(${valueElement.value}${effectsSign[newEffect]})`);
+  image.style.filter = `${effectsStyle[newEffect]}(${valueElement.value}${effectsSign[newEffect]})`;
   return newEffect;
 });
 
 sliderElement.noUiSlider.on('update', () => {
   valueElement.value = sliderElement.noUiSlider.get();
-  image.setAttribute('style', `filter: ${effectsStyle[newEffect]}(${valueElement.value}${effectsSign[newEffect]})`);
+  image.style.filter = `${effectsStyle[newEffect]}(${valueElement.value}${effectsSign[newEffect]})`;
 });
+
+export {newEffect};
