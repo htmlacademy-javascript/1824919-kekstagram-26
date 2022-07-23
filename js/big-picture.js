@@ -60,13 +60,14 @@ const openBigPicture = function (picture, commentsOfPicture, description) {
     } else {commentsLoader.classList.remove('hidden');}
     let firstNumber = 5;
     let secondNumber = 10;
+
     commentsLoader.addEventListener('click', () => {
       commentsArray = commentsOfPicture.slice(firstNumber, secondNumber);
       commentsLength += commentsArray.length;
       commentsBlocks.querySelector('.comments-quantity').textContent = commentsLength;
       firstNumber += 5;
       secondNumber += 5;
-      if (commentsArray.length < 5) {
+      if (commentsArray.length < 5 || commentsBlocks.querySelector('.comments-quantity').textContent === bigComments.textContent) {
         commentsLoader.classList.add('hidden');
       } else {commentsLoader.classList.remove('hidden');}
 
