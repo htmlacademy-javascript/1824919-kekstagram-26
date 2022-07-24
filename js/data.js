@@ -3,14 +3,7 @@
 //   createUniqueId,
 //   getRandomPositiveInteger
 // } from './util.js';
-
-
-// const idObject = [];
-
-// const amountOfNumbers = 25;
-// for (let i = 1; i <= amountOfNumbers; i++) {
-//   idObject.push(i);
-// }
+//
 // //В массив записываются числа, которые будем вешать на идентификаторы
 
 // const url = [];
