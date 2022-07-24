@@ -3,8 +3,6 @@
 //   createUniqueId,
 //   getRandomPositiveInteger
 // } from './util.js';
-
-
 //
 // //В массив записываются числа, которые будем вешать на идентификаторы
 
