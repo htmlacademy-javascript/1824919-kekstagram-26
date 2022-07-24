@@ -1,5 +1,4 @@
 import {newEffect} from './effects.js';
-
 const uploadInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadCancel = document.querySelector('#upload-cancel');
@@ -198,6 +197,7 @@ const setUserFormSubmit = (onSuccess) => {
         'https://26.javascript.pages.academy/kekstagram',
         {
           method: 'POST',
+          enctype: 'multipart/form-data',
           body: formData,
         },
       )

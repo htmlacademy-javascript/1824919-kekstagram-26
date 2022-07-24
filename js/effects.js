@@ -1,4 +1,3 @@
-// scale
 const scaleSmaller = document.querySelector('.scale__control--smaller');
 const scaleBigger = document.querySelector('.scale__control--bigger');
 const scaleValue = document.querySelector('.scale__control--value');
@@ -97,6 +96,7 @@ document.querySelector('.effects__list').addEventListener('change', (evt) => {
   if (evt.target.value === 'none') {
     sliderElement.classList.add('hidden');
     image.classList.remove(`effects__preview--${newEffect}`);
+    image.style.filter = '';
   } else {sliderElement.classList.remove('hidden');}
 
   image.classList.remove(`effects__preview--${newEffect}`);
