@@ -1,4 +1,5 @@
 import {newEffect} from './effects.js';
+
 const uploadInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadCancel = document.querySelector('#upload-cancel');
