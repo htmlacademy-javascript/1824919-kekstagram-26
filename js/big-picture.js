@@ -1,3 +1,6 @@
+const descriptionPlace = document.querySelector('.social__caption');
+const commentsBlocks = document.querySelector('.social__comment-count');
+
 const isEscapeKey = function (evt) {
   return evt.key === 'Escape';
 };
@@ -17,9 +20,6 @@ const makeElement = function (tagName, className, text) {
   }
   return element;
 };
-
-const descriptionPlace = document.querySelector('.social__caption');
-const commentsBlocks = document.querySelector('.social__comment-count');
 
 const pushComment = function (comment) {
   const commentsItem = makeElement('li', 'social__comment');
