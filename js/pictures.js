@@ -1,8 +1,9 @@
+import {createUniqueNumberFromArray} from './util.js';
+import {openBigPicture} from './big-picture.js';
+
 const randomButton = document.querySelector('#filter-random');
 const defaultButton = document.querySelector('#filter-default');
 const discussedButton = document.querySelector('#filter-discussed');
-import {createUniqueNumberFromArray} from './util.js';
-import {openBigPicture} from './big-picture.js';
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
   .content

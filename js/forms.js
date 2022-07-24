@@ -1,3 +1,4 @@
+import {newEffect} from './effects.js';
 const uploadInput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadCancel = document.querySelector('#upload-cancel');
@@ -7,7 +8,7 @@ const form = document.querySelector('#upload-select-image');
 const objectFragment = document.createDocumentFragment();
 const submitButton = document.querySelector('.img-upload__submit');
 const scaleValue = document.querySelector('.scale__control--value');
-import {newEffect} from './effects.js';
+
 const closeOverlay = function () {
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('.modal-open');
@@ -196,6 +197,7 @@ const setUserFormSubmit = (onSuccess) => {
         'https://26.javascript.pages.academy/kekstagram',
         {
           method: 'POST',
+          enctype: 'multipart/form-data',
           body: formData,
         },
       )

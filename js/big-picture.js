@@ -91,7 +91,6 @@ const onPictureEscKeydown = (evt) => {
 };
 
 function openPicture () {
-  // commentsBlocks.classList.add('hidden');
   big.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onPictureEscKeydown);
