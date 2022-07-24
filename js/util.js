@@ -15,7 +15,7 @@ function createUniqueNumberFromArray(numbers) {
 function createUniqueId(numbers) {
   let result = null;
   while(!numbers.includes(result)) {
-    result = getRandomPositiveInteger(1, 1000);
+    result = getRandomPositiveInteger(1, 10);
     numbers.push(result);
   }
 
