@@ -1,3 +1,5 @@
+const showingTimeOfAlertContainer = 500000;
+
 const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -16,6 +18,7 @@ function createUniqueId(numbers) {
   let result = null;
   while(!numbers.includes(result)) {
     result = getRandomPositiveInteger(1, 10);
+    // result - переменная внутри функции для выискивания уникального числа от 1 до 10
     numbers.push(result);
   }
 
@@ -40,7 +43,7 @@ const showAlert = (message) => {
 
   setTimeout(() => {
     alertContainer.remove();
-  }, 500000);
+  }, showingTimeOfAlertContainer);
 };
 
 export {

@@ -2,28 +2,32 @@ const scaleSmaller = document.querySelector('.scale__control--smaller');
 const scaleBigger = document.querySelector('.scale__control--bigger');
 const scaleValue = document.querySelector('.scale__control--value');
 const image = document.querySelector('.img-upload__preview');
+const numberOfScaling = 25;
+const smallestValue = 30;
+const biggestValue = 30;
 
 scaleSmaller.addEventListener('click', () => {
-  const percent = parseFloat(scaleValue.value);
-  if (percent >= 30) {
-    scaleValue.value = `${percent - 25}%`;
-    const resultNumber = parseFloat(scaleValue.value) / '100';
-    image.style.transform = `scale(${resultNumber})`;
+  const percentNumber = parseFloat(scaleValue.value);
+  if (percentNumber >= smallestValue) {
+    scaleValue.value = `${percentNumber - numberOfScaling}%`;
+    const resultNumberForScale = parseFloat(scaleValue.value) / '100';
+    image.style.transform = `scale(${resultNumberForScale})`;
   }
 });
 
 scaleBigger.addEventListener('click', () => {
-  const percent = parseFloat(scaleValue.value);
-  if (percent <= 75) {
-    scaleValue.value = `${percent + 25}%`;
-    const resultNumber = parseFloat(scaleValue.value) / '100';
-    image.style.transform = `scale(${resultNumber})`;
+  const percentNumber = parseFloat(scaleValue.value);
+  if (percentNumber <= biggestValue) {
+    scaleValue.value = `${percentNumber + numberOfScaling}%`;
+    const resultNumberForScale = parseFloat(scaleValue.value) / '100';
+    image.style.transform = `scale(${resultNumberForScale})`;
   }
 });
 
 const sliderElement = document.querySelector('.effect-level__slider');
 const valueElement = document.querySelector('.effect-level__value');
 sliderElement.classList.add('hidden');
+document.querySelector('.img-upload__effect-level').classList.add('hidden');
 valueElement.value = 100;
 
 noUiSlider.create(sliderElement, {
@@ -95,9 +99,12 @@ document.querySelector('.effects__list').addEventListener('change', (evt) => {
   scaleValue.value = '100%';
   if (evt.target.value === 'none') {
     sliderElement.classList.add('hidden');
+    document.querySelector('.img-upload__effect-level').classList.add('hidden');
     image.classList.remove(`effects__preview--${newEffect}`);
     image.style.filter = '';
-  } else {sliderElement.classList.remove('hidden');}
+  } else {sliderElement.classList.remove('hidden');
+    document.querySelector('.img-upload__effect-level').classList.remove('hidden');
+  }
 
   image.classList.remove(`effects__preview--${newEffect}`);
   image.classList.add(`effects__preview--${evt.target.value}`);
