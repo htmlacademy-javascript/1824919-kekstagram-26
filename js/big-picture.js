@@ -1,6 +1,5 @@
 const descriptionPlace = document.querySelector('.social__caption');
-const commentsBlocks = document.querySelector('.social__comment-count');
-
+const actualCommentsNumber = document.querySelector('.comments-quantity');
 const isEscapeKey = function (evt) {
   return evt.key === 'Escape';
 };
@@ -8,7 +7,7 @@ const isEscapeKey = function (evt) {
 const big = document.querySelector('.big-picture');
 const bigImage = document.querySelector('.big-picture__img').querySelector('img');
 const likes = document.querySelector('.likes-count');
-const bigComments = document.querySelector('.comments-count');
+const allCommentsNumber = document.querySelector('.comments-count');
 const allComments = document.querySelector('.social__comments');
 const commentsLoader = document.querySelector('.comments-loader');
 
@@ -41,14 +40,14 @@ const openBigPicture = function (picture, commentsOfPicture, description) {
     allComments.innerHTML = '';
     bigImage.src = picturePhoto.src;
     likes.textContent = pictureLikes.textContent;
-    bigComments.textContent = pictureComments.textContent;
+    allCommentsNumber.textContent = pictureComments.textContent;
     descriptionPlace.textContent = description;
 
     let commentsLength = 0;
 
     let commentsArray = commentsOfPicture.slice(0, 5);
     commentsLength += commentsArray.length;
-    commentsBlocks.querySelector('.comments-quantity').textContent = commentsLength;
+    actualCommentsNumber.textContent = commentsLength;
 
     for (let i = 0; i < commentsArray.length; i++) {
       const cardItem = pushComment(commentsArray[i]);
@@ -58,16 +57,16 @@ const openBigPicture = function (picture, commentsOfPicture, description) {
     if (commentsArray.length < 5 || pictureComments.textContent <= 5) {
       commentsLoader.classList.add('hidden');
     } else {commentsLoader.classList.remove('hidden');}
-    let firstNumber = 5;
-    let secondNumber = 10;
+    let commentsCopyFrom = 5;
+    let commentsCopyTo = 10;
 
     commentsLoader.addEventListener('click', () => {
-      commentsArray = commentsOfPicture.slice(firstNumber, secondNumber);
+      commentsArray = commentsOfPicture.slice(commentsCopyFrom, commentsCopyTo);
       commentsLength += commentsArray.length;
-      commentsBlocks.querySelector('.comments-quantity').textContent = commentsLength;
-      firstNumber += 5;
-      secondNumber += 5;
-      if (commentsArray.length < 5 || commentsBlocks.querySelector('.comments-quantity').textContent === bigComments.textContent) {
+      actualCommentsNumber.textContent = commentsLength;
+      commentsCopyFrom += 5;
+      commentsCopyTo += 5;
+      if (commentsArray.length < 5 || actualCommentsNumber.textContent === allCommentsNumber.textContent) {
         commentsLoader.classList.add('hidden');
       } else {commentsLoader.classList.remove('hidden');}
 

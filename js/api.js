@@ -3,6 +3,8 @@ import {showAlert} from './util.js';
 import {setRandomClick, setDefaultClick, setDiscussedClick} from './pictures.js';
 import {makeRandom, makeDiscussed, makeDefault} from './pictures.js';
 
+const pressButtonDelay = 500;
+
 const getData = (onSuccess, onFail) => {
   fetch('https://26.javascript.pages.academy/kekstagram/data')
     .then((response) => response.json())
@@ -26,9 +28,9 @@ const debounce = (callback, timeoutDelay) => {
 getData((allPhotos) => {
   makePictures(allPhotos);
   document.querySelector('.img-filters').classList.remove('img-filters--inactive');
-  setRandomClick(debounce(() => makeRandom(allPhotos), 500));
-  setDefaultClick(debounce(() => makeDefault(allPhotos), 500));
-  setDiscussedClick(debounce(() => makeDiscussed(allPhotos), 500));
+  setRandomClick(debounce(() => makeRandom(allPhotos), pressButtonDelay));
+  setDefaultClick(debounce(() => makeDefault(allPhotos), pressButtonDelay));
+  setDiscussedClick(debounce(() => makeDiscussed(allPhotos), pressButtonDelay));
 }, showAlert);
 
 export {getData};
